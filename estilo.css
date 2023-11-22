@@ -27,9 +27,9 @@
 
 /* Estilos do personagem Mario */
 .mario {
-  width: 130px;
+  width: 120px;
   position: absolute;
-  bottom: 0px;
+  bottom: -20px;
 }
 
 /* Classe para a animação de pulo do Mario */
