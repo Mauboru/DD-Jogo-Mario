@@ -4,3 +4,4 @@ Jogo baseado em Super Mario feito em JS para a aula de Desenvolvimento de Deskto
 # Adicionar
 - pontuacao na tela
 - logica de pontuar
+- logica para reiniciar
