@@ -5,3 +5,4 @@ Jogo baseado em Super Mario feito em JS para a aula de Desenvolvimento de Deskto
 - pontuacao na tela
 - logica de pontuar
 - logica para reiniciar
+- sons ambientes
