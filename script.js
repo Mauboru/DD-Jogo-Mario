@@ -7,16 +7,21 @@ const hudPontos = document.querySelector('.hud');
 
 let pontuacao = 0;  
 let marcouPonto = false;
+let morreu = false
 
 document.addEventListener('keyup', fazerPlayerPular);
 
 function fazerPlayerPular(){
-    player.src = 'assets/imgs/naruto-jump.png';
-    player.classList.add('pular');
-    setTimeout(function () {
-        player.src = 'assets/imgs/naruto-run.gif';
-        player.classList.remove('pular');
-    }, 500);
+    if(!morreu){
+        player.src = 'assets/imgs/naruto-jump.png';
+        player.classList.add('pular');
+        setTimeout(function () {
+            if (!morreu){
+                player.src = 'assets/imgs/naruto-run.gif';
+                player.classList.remove('pular');
+            }
+        }, 500);
+    }
 }
 
 function atualizarPontuacao(){
@@ -29,7 +34,8 @@ function verificarColisoes(){
     const posicaoNuvem = parseFloat(getComputedStyle(nuvem).bottom);
 
     if(posicaoCano <= 100 && posicaoCano > 0 && posicaoPLayer < 60){
-        console.log("Você morreu, sua pontuação foi de: ", pontuacao)
+        hudPontos.innerHTML = "Voce morreu, sua pontuacao foi de: " + pontuacao;
+        morreu = true;
         pontuacao = 0;
         pararJogo();
 
@@ -38,9 +44,7 @@ function verificarColisoes(){
 
         player.style.animation = 'none';
         player.style.bottom = `${posicaoPLayer}px`;
-        player.src = 'assets/imgs/fim-de-jogo.png';
-        player.style.width = '70px';
-        player.style.marginLeft = '35px';
+        player.src = 'assets/imgs/naruto-damage.png';
 
         nuvem.style.animation = 'nuvem 20s infinite linear';
         nuvem.style.left = `${posicaoNuvem}px`;
