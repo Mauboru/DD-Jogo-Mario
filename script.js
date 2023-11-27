@@ -1,4 +1,4 @@
-const mario = document.querySelector('.mario');
+const player = document.querySelector('.player');
 const cano = document.querySelector('.cano');
 const nuvem = document.querySelector('.nuvem');
 const fimDeJogo = document.querySelector('.fim-de-jogo');
@@ -8,12 +8,14 @@ const hudPontos = document.querySelector('.hud');
 let pontuacao = 0;  
 let marcouPonto = false;
 
-document.addEventListener('keyup', fazerMarioPular);
+document.addEventListener('keyup', fazerPlayerPular);
 
-function fazerMarioPular(){
-    mario.classList.add('pular');
+function fazerPlayerPular(){
+    player.src = 'assets/imgs/naruto-jump.png';
+    player.classList.add('pular');
     setTimeout(function () {
-        mario.classList.remove('pular');
+        player.src = 'assets/imgs/naruto-run.gif';
+        player.classList.remove('pular');
     }, 500);
 }
 
@@ -23,10 +25,10 @@ function atualizarPontuacao(){
 
 function verificarColisoes(){
     const posicaoCano = cano.offsetLeft;
-    const posicaoMario = parseFloat(getComputedStyle(mario).bottom);
+    const posicaoPLayer = parseFloat(getComputedStyle(player).bottom);
     const posicaoNuvem = parseFloat(getComputedStyle(nuvem).bottom);
 
-    if(posicaoCano <= 100 && posicaoCano > 0 && posicaoMario < 60){
+    if(posicaoCano <= 100 && posicaoCano > 0 && posicaoPLayer < 60){
         console.log("Você morreu, sua pontuação foi de: ", pontuacao)
         pontuacao = 0;
         pararJogo();
@@ -34,11 +36,11 @@ function verificarColisoes(){
         cano.style.animation = 'none';
         cano.style.left = `${posicaoCano}px`;
 
-        mario.style.animation = 'none';
-        mario.style.bottom = `${posicaoMario}px`;
-        mario.src = 'assets/imgs/fim-de-jogo.png';
-        mario.style.width = '70px';
-        mario.style.marginLeft = '35px';
+        player.style.animation = 'none';
+        player.style.bottom = `${posicaoPLayer}px`;
+        player.src = 'assets/imgs/fim-de-jogo.png';
+        player.style.width = '70px';
+        player.style.marginLeft = '35px';
 
         nuvem.style.animation = 'nuvem 20s infinite linear';
         nuvem.style.left = `${posicaoNuvem}px`;
@@ -46,7 +48,7 @@ function verificarColisoes(){
         fimDeJogo.style.visibility = 'visible';
     }
 
-    if (posicaoCano <= 100 && posicaoCano > 0 && posicaoMario > 60){
+    if (posicaoCano <= 100 && posicaoCano > 0 && posicaoPLayer > 60){
         if (!marcouPonto) {
             pontuacao++;
             atualizarPontuacao();
