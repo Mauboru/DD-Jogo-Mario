@@ -35,6 +35,10 @@ function verificarColisoes(){
     const posicaoPLayer = parseFloat(getComputedStyle(player).bottom);
 
     if(posicaoObstaculo <= 100 && posicaoObstaculo > 0 && posicaoPLayer < 60){
+        var audio = new Audio('assets/audios/snd-damage.wav');
+        audio.addEventListener('canplaythrough', function() {
+          audio.play();
+        });
         hudPontos.innerHTML = "Voce morreu, sua pontuacao foi de: " + pontuacao;
         morreu = true;
         pontuacao = 0;
@@ -72,7 +76,7 @@ function reiniciar(){
     location.reload();
 }
 
-// var audio = new Audio('audio.mp3');
-// audio.addEventListener('canplaythrough', function() {
-//   audio.play();
-// });
+var audio = new Audio('assets/audios/audio.mp3');
+audio.addEventListener('canplaythrough', function() {
+  audio.play();
+});
