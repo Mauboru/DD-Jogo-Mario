@@ -1,6 +1,5 @@
 const player = document.querySelector('.player');
-const cano = document.querySelector('.cano');
-const nuvem = document.querySelector('.nuvem');
+const obstaculo = document.querySelector('.obstaculo');
 const fimDeJogo = document.querySelector('.fim-de-jogo');
 const botaoReiniciar = document.querySelector('.reiniciar');
 const hudPontos = document.querySelector('.hud');
@@ -32,30 +31,26 @@ function atualizarPontuacao(){
 }
 
 function verificarColisoes(){
-    const posicaoCano = cano.offsetLeft;
+    const posicaoObstaculo = obstaculo.offsetLeft;
     const posicaoPLayer = parseFloat(getComputedStyle(player).bottom);
-    const posicaoNuvem = parseFloat(getComputedStyle(nuvem).bottom);
 
-    if(posicaoCano <= 100 && posicaoCano > 0 && posicaoPLayer < 60){
+    if(posicaoObstaculo <= 100 && posicaoObstaculo > 0 && posicaoPLayer < 60){
         hudPontos.innerHTML = "Voce morreu, sua pontuacao foi de: " + pontuacao;
         morreu = true;
         pontuacao = 0;
         pararJogo();
 
-        cano.style.animation = 'none';
-        cano.style.left = `${posicaoCano}px`;
+        obstaculo.style.animation = 'none';
+        obstaculo.style.left = `${posicaoObstaculo}px`;
 
         player.style.animation = 'none';
         player.style.bottom = `${posicaoPLayer}px`;
         player.src = 'assets/imgs/naruto-damage.png';
 
-        nuvem.style.animation = 'nuvem 20s infinite linear';
-        nuvem.style.left = `${posicaoNuvem}px`;
-
         fimDeJogo.style.visibility = 'visible';
     }
 
-    if (posicaoCano <= 100 && posicaoCano > 0 && posicaoPLayer > 60){
+    if (posicaoObstaculo <= 100 && posicaoObstaculo > 0 && posicaoPLayer > 60){
         if (!marcouPonto) {
             pontuacao++;
             atualizarPontuacao();
