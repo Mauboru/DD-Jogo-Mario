@@ -3,8 +3,10 @@ const cano = document.querySelector('.cano');
 const nuvem = document.querySelector('.nuvem');
 const fimDeJogo = document.querySelector('.fim-de-jogo');
 const botaoReiniciar = document.querySelector('.reiniciar');
+const hudPontos = document.querySelector('.hud');
 
 let pontuacao = 0;  
+let marcouPonto = false;
 
 document.addEventListener('keyup', fazerMarioPular);
 
@@ -12,13 +14,11 @@ function fazerMarioPular(){
     mario.classList.add('pular');
     setTimeout(function () {
         mario.classList.remove('pular');
-        pontuacao++;
-        atualizarPontuacao();
     }, 500);
 }
 
 function atualizarPontuacao(){
-    console.log('Pontuação: ' + pontuacao);
+    hudPontos.innerHTML = "Pontos: " + pontuacao;
 }
 
 function verificarColisoes(){
@@ -45,6 +45,16 @@ function verificarColisoes(){
 
         fimDeJogo.style.visibility = 'visible';
     }
+
+    if (posicaoCano <= 100 && posicaoCano > 0 && posicaoMario > 60){
+        if (!marcouPonto) {
+            pontuacao++;
+            atualizarPontuacao();
+            marcouPonto = true;
+        }
+    } else {
+        marcouPonto = false;
+    }
 }
 
 let loopJogo = setInterval(verificarColisoes, 10);
@@ -58,8 +68,7 @@ function reiniciar(){
     location.reload();
 }
 
-var audio = new Audio('audio.mp3');
-audio.addEventListener('canplaythrough', function() {
-  audio.play();
-});
-
+// var audio = new Audio('audio.mp3');
+// audio.addEventListener('canplaythrough', function() {
+//   audio.play();
+// });
