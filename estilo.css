@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Ninja Naruto', sans-serif;
 }
 
 /* Estilos do tabuleiro do jogo */
@@ -74,6 +75,14 @@
   font-size: 20px;
   background-color: rgb(255, 255, 255);
   cursor: pointer;
+}
+
+/* Estilos da HUD de pontos */
+.hud {
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  padding: 5rem;
 }
 
 /* Animação para o movimento do cano */
