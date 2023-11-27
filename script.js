@@ -7,18 +7,21 @@ const hudPontos = document.querySelector('.hud');
 
 let pontuacao = 0;  
 let marcouPonto = false;
-let morreu = false
+let morreu = false;
+let pulando = false;
 
 document.addEventListener('keyup', fazerPlayerPular);
 
 function fazerPlayerPular(){
-    if(!morreu){
+    if(!morreu && !pulando){
+        pulando = true;
         player.src = 'assets/imgs/naruto-jump.png';
         player.classList.add('pular');
         setTimeout(function () {
             if (!morreu){
                 player.src = 'assets/imgs/naruto-run.gif';
                 player.classList.remove('pular');
+                pulando = false;
             }
         }, 500);
     }
